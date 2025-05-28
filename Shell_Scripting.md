@@ -72,14 +72,125 @@ Validate() {
 - `>` : overwrite stdout
 - `>>` : append
 - `2>` : stderr
-- `&>` : both stdout and stderr
+- `&>` : both stdout and stderr---
+
+## 📦 Standard Input, Output, and Error
+
+| Stream | Name          | Description                      |
+|--------|---------------|----------------------------------|
+| stdin  | Standard Input| Usually the keyboard             |
+| stdout | Standard Output| Normal output from commands      |
+| stderr | Standard Error| Error messages from commands     |
+
+```bash
+command > file.txt     # stdout redirected to file
+command 2> error.txt   # stderr redirected to error file
+command &> all.txt     # stdout and stderr to same file
+```
 
 ---
 
-## 🛠 How to Use
+## 🔍 Useful Commands
 
-Clone and run scripts:
+| Command   | Purpose                               |
+|-----------|----------------------------------------|
+| `df`      | Disk space usage                       |
+| `free`    | Memory usage                           |
+| `top`     | Real-time system process monitoring    |
+| `nproc`   | Number of available CPU cores          |
+
+---
+
+## 🧪 `set` Command Variants
+
+| Command     | Use Case                                       |
+|-------------|------------------------------------------------|
+| `set -x`    | Show each command and its expanded arguments   |
+| `set -e`    | Exit if any command fails                      |
+| `set -o`    | Set various options (e.g., `set -o nounset`)   |
+
+---
+
+## 🔗 Pipe Operator `|`
+
+- Used to **pass output of one command** as input to another.
+
 ```bash
-chmod +x script.sh
-./script.sh
-``
+ls -l | grep "txt"
+```
+
+---
+
+## ⚠️ `trap` Command
+
+Allows you to run custom commands when a signal is received (e.g., script exit, Ctrl+C).
+
+```bash
+trap "echo Cleaning up...; rm -f /tmp/tempfile" EXIT
+trap "echo Interrupted!" SIGINT
+```
+
+To reset:
+```bash
+trap - SIGINT
+```
+
+Be cautious of malicious traps like:
+```bash
+trap "rm -rf *" SIGINT  # Dangerous: deletes all files if Ctrl+C is pressed
+```
+
+---
+
+## 📁 `find` Command
+
+```bash
+find / -name "file.txt"      # Search by name
+sudo find / 2>/dev/null      # Suppress permission errors
+```
+
+---
+
+## 🕵️ `grep` vs `awk`
+
+| Tool   | Best For                           |
+|--------|------------------------------------|
+| `grep` | Finding patterns in lines          |
+| `awk`  | Field-based extraction, reporting  |
+
+Example:
+```bash
+grep "error" logfile.txt
+awk '{print $1, $3}' logfile.txt
+```
+
+---
+
+## 🌐 `curl` vs `wget`
+
+| Feature       | `curl`                      | `wget`                           |
+|---------------|-----------------------------|----------------------------------|
+| API support   | ✅ Yes                      | ❌ Limited                       |
+| Download site | ❌ No                       | ✅ Yes (recursive download)     |
+| Save file     | `-O` or `> file` needed     | Saves automatically              |
+| Resume        | ❌ (scripted)               | ✅ `-c` to resume                 |
+
+---
+
+## ✅ Example: `curl` with API
+
+```bash
+curl -X GET https://api.github.com/users/octocat
+```
+
+---
+
+## 🛑 Understanding `#!/bin/bash`, `#!/bin/sh`, `#!/bin/dash`
+
+- `#!/bin/bash` → Full-featured Bash shell
+- `#!/bin/sh` → May point to Bash or Dash (POSIX compliant)
+- `#!/bin/dash` → Lightweight POSIX shell (used in Ubuntu `/bin/sh`)
+
+Use `bash` for scripts with Bash-specific features.
+
+---
