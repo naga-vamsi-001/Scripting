@@ -1,0 +1,60 @@
+AWS Resource Tracker Report - 2025-06-07
+--------------------------------------
+
+[S3 Buckets]
+2025-06-07 15:31:01 bucket-name-example-1
+
+[EC2 Instances]
+{
+    "Reservations": [
+        {
+            "Instances": [
+                {
+                    "InstanceId": "i-0123456789abcdef0",
+                    "InstanceType": "t2.micro",
+                    "State": {
+                        "Name": "running"
+                    }
+                }
+            ]
+        }
+    ]
+}
+
+Print list of IAM Users
+{
+    "Users": [
+        {
+            "UserName": "admin",
+            "CreateDate": "2024-12-01T00:00:00Z"
+        }
+    ]
+}
+
+[Lambda Functions]
+{
+  "Functions": [
+    {
+      "FunctionName": "MyLambdaFunction",
+      ...
+    }
+  ]
+}
+
+[IAM Users]
+{
+  "Users": [
+    {
+      "UserName": "dev-user",
+      ...
+    }
+  ]
+}
+
+[Glue Jobs]
+{
+  "JobNames": [
+    "job-1",
+    "job-2"
+  ]
+}

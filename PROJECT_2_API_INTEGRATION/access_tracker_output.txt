@@ -1,0 +1,3 @@
+Listing users with read access to naga-vamsi-001/devops-scripts:
+Naga
+Vamsi
