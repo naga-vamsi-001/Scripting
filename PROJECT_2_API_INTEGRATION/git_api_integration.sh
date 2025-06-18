@@ -3,9 +3,11 @@
 #########################
 # Author : Naga Vamsi
 # Date   : 08-06-2025
-# Version: V1
+# Version: V2
 # Description: This script lists users with read access to a given GitHub repository
 #########################
+
+helper()
 
 API_URL="https://api.github.com"
 
@@ -37,6 +39,14 @@ function list_users_with_read_access {
     fi
 }
 
-# Call the function
+function helper {
+    expected_cmd_agrs=2
+    if [ $# -ne $expected_cmd_agrs]; then
+    echo "please execute the script with required cmd agrs"
+    echo "cmd agrs 1.org_name 2.repo_name"
+}
+
+# Main script
+
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}..."
 list_users_with_read_access
